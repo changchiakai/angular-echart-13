@@ -20,6 +20,7 @@ import { mockupInterceptorProvider } from './core/interceptor/mockup.interceptor
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RamDataComponent } from './pages/ram-data/ram-data.component';
 import { MixDataComponent } from './pages/mix-data/mix-data.component';
+import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { MixDataComponent } from './pages/mix-data/mix-data.component';
     ErrorPageComponent,
     RamDataComponent,
     MixDataComponent,
+    HsinchuPeopleComponent,
   ],
   imports: [
     BrowserModule,

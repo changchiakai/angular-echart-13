@@ -7,6 +7,7 @@ import { TestAComponent } from './pages/test/test-a/test-a.component';
 import { TestBComponent } from './pages/test/test-b/test-b.component';
 import { RamDataComponent } from './pages/ram-data/ram-data.component';
 import { MixDataComponent } from './pages/mix-data/mix-data.component';
+import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
 
 const routes: Routes = [
 
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: "mix-data", component: MixDataComponent
+  },
+  {
+    path:"hsinchu-people-data",component:HsinchuPeopleComponent
   },
   {
     path: "test-a", component: TestAComponent
