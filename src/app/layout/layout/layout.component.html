@@ -1,12 +1,14 @@
 <div class="full-page">
     <div>
         <header style="width:100%">
-            <app-nav></app-nav>
+            <app-nav (logoutEvent)="hideMenu()" (menuToggleEvent)="toggleMenuVisibility()"></app-nav>
         </header>
         <div class="wrapper">
             <div style="display:flex">
                 <div style="flex:5%">
-                    <app-menu></app-menu>
+                    <div *ngIf="menuVisible" [@menuAnimation]>
+                        <app-menu></app-menu>
+                    </div>
                 </div>
                 <div style="flex:95%;padding:4px;">
                     <router-outlet></router-outlet>

@@ -20,3 +20,38 @@
     /*隨footer高度需做調整*/
     background-color: blue;
 }
+
+.hamburger-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.menu {
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 300ms ease-in-out;
+}
+
+.menu-title {
+    color: white;
+    padding: 10px;
+    background-color: #444;
+}
+
+.menu-item {
+    padding: 10px;
+    color: white;
+}
+
+.menu-item:hover {
+    background-color: #555;
+}
+
+.submenu {
+    padding-left: 20px;
+}
