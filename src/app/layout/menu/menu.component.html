@@ -1,0 +1,17 @@
+<div class="menu">
+    <div class="menu-title">Angular-Echart</div>
+    <div *ngFor="let menu of menus" class="menu-item">
+      <div class="menu-label" (click)="toggleMenu(menu)">
+        <span>{{menu.text}}</span>
+        <span *ngIf="menu.subMenus" class="menu-arrow">
+          {{ menu.expanded ?'▼' : '▲' }}
+        </span>
+      </div>
+  
+      <div *ngIf="menu.subMenus && menu.expanded" class="submenu">
+        <div *ngFor="let subMenu of menu.subMenus" class="submenu-item" (click)="routerTo(subMenu)">
+          {{subMenu.text}}
+        </div>
+      </div>
+    </div>
+  </div>

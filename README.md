@@ -1,27 +1,67 @@
-# AngularEchart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.11.
 
-## Development server
+# angular-echart-13 Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+這個專案是基於 Angular 13 和 ECharts 5.3.3 建立的，用於展示如何在 Angular 應用中整合 ECharts 和 ngx-echarts 套件。
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 安裝與啟動
 
-## Build
+### 1. 安裝專案相依套件
+首先，請確保已經安裝了 [Node.js](https://nodejs.org/) 和 [npm](https://www.npmjs.com/)。接著，使用以下命令安裝專案的相依套件：
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install
+```
 
-## Running unit tests
+### 2. 啟動開發伺服器
+安裝完成後，使用下面的指令啟動 Angular 開發伺服器：
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm start
+```
 
-## Running end-to-end tests
+這樣，你的應用將會在 `http://localhost:4200/` 上啟動。當修改源碼時，開發伺服器會自動重新載入頁面。
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 3. 其他常用指令
 
-## Further help
+- **構建專案**: `npm run build`
+  - 這個指令會構建專案並將結果輸出到 `dist/` 資料夾中。
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **開發環境監控**: `npm run watch`
+  - 啟動監控模式，會在你修改檔案時自動重新建構專案。
+
+- **測試**: `npm test`
+  - 執行單元測試並顯示測試結果。
+
+## 套件說明
+
+### `echarts`
+ECharts 是一個開源的可視化圖表庫，用於呈現各類圖表，如折線圖、長條圖、圓餅圖等。
+
+### `ngx-echarts`
+`ngx-echarts` 是 Angular 用來包裝 ECharts 的套件，提供了 Angular 版的 ECharts 組件，讓你可以在 Angular 中更輕鬆地使用 ECharts。
+
+
+```
+npm install echarts@5.3.3 -S
+npm install ngx-echarts@8.0.1 -S
+```
+
+
+## 意圖
+
+這個專案的目的是展示如何將 ECharts 和 ngx-echarts 整合到 Angular 應用中
+
+## 使用方式
+
+1. 將 `ngx-echarts` 組件加入到 Angular 組件中。
+2. 使用 ECharts 配置來設定顯示的圖表內容。
+3. 可依照需要調整配置項，來展示各種不同的圖表樣式與功能。
+
+## 其他說明
+
+- 本專案使用 `normalize.css` 來規範瀏覽器默認樣式，確保樣式的一致性。
+- 使用 `rxjs` 來處理異步操作與數據流，並且搭配 `zone.js` 管理 Angular 的變更檢測。
+
+```
