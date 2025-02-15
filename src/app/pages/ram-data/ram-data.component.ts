@@ -3,11 +3,11 @@ import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 import { ComputeService } from 'src/app/core/service/compute.service';
 @Component({
-  selector: 'app-compute-data',
-  templateUrl: './compute-data.component.html',
-  styleUrls: ['./compute-data.component.css']
+  selector: 'app-ram-data',
+  templateUrl: './ram-data.component.html',
+  styleUrls: ['./ram-data.component.css']
 })
-export class ComputeDataComponent implements OnInit, AfterViewInit {
+export class RamDataComponent implements OnInit, AfterViewInit {
   test!: EChartsOption
 
   @ViewChild('chart', { static: true }) chartRef!: ElementRef;
@@ -19,12 +19,17 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.myChart = echarts.init(this.chartRef.nativeElement, null, { locale: 'ZH', renderer: 'canvas' });
 
-    const dataCount = 1000;
-    const times = Array.from({ length: dataCount }, (_, i) => `${Math.floor(i / 10).toString().padStart(2, '0')}:${(i % 10) * 6}`);
-    const usageData = Array.from({ length: dataCount }, () => Math.floor(Math.random() * 100));
-
+    const dataCount = 500;
+    // const times = Array.from({ length: dataCount }, (_, i) => `${Math.floor(i / 10).toString().padStart(2, '0')}:${(i % 10) * 6}`);
+    // const usageData = Array.from({ length: dataCount }, () => Math.floor(Math.random() * 100));
+    const data = [
+      { time: '2025-02-15 00:00', value: 10 },
+      { time: '2025-02-15 02:00', value: 20 },
+      { time: '2025-02-15 04:00', value: 15 },
+      { time: '2025-02-15 06:00', value: 25 },
+    ];
     const option = {
-      title: { text: '電腦使用率紀錄' + dataCount + "點" },
+      title: { text: 'RAM 使用率紀錄 ' },
       tooltip: { trigger: 'axis' },
       toolbox: {
         feature: {
@@ -57,12 +62,22 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
         { type: 'inside' },
         { type: 'slider', show: true }
       ],
-      xAxis: { type: 'category', data: times },
-      yAxis: { type: 'value', axisLabel: { formatter: '{value} %' } },
+      xAxis: {
+        type: 'time',
+        axisLabel: {
+          formatter: function (value: any) {
+            // 格式化時間顯示為 'yyyy-MM-dd hh:mm'
+            return echarts.format.formatTime('yyyy-MM-dd hh:mm', value);
+          }
+        }
+      },
+      yAxis: {
+        type: 'value'
+      },
       series: [{
         name: 'RAM 使用率',
         type: 'line',
-        data: usageData,
+        data: data,
         smooth: true,
         lineStyle: { color: '#5470C6' }
       }],

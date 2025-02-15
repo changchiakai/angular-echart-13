@@ -5,6 +5,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { TestAComponent } from './pages/test/test-a/test-a.component';
 import { TestBComponent } from './pages/test/test-b/test-b.component';
+import { RamDataComponent } from './pages/ram-data/ram-data.component';
+import { MixDataComponent } from './pages/mix-data/mix-data.component';
 
 const routes: Routes = [
 
@@ -14,6 +16,12 @@ const routes: Routes = [
   },
   {
     path: "compute-data", component: ComputeDataComponent
+  },
+  {
+    path: "ram-data", component: RamDataComponent
+  },
+  {
+    path: "mix-data", component: MixDataComponent
   },
   {
     path: "test-a", component: TestAComponent

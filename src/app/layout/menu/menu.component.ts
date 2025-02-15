@@ -11,6 +11,8 @@ export class MenuComponent implements OnInit {
 
   menus = [
     { text: '電腦資料', path: "compute-data", expanded: false },
+    { text: 'ram 資料', path: "ram-data", expanded: false },
+    { text: 'mix資料', path: "mix-data", expanded: false },
     {
       text: 'test',
       expanded: false,  // 用於控制子菜單是否展開

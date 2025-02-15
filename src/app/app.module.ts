@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { mockupInterceptorProvider } from './core/interceptor/mockup.interceptor';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RamDataComponent } from './pages/ram-data/ram-data.component';
+import { MixDataComponent } from './pages/mix-data/mix-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     TestAComponent,
     TestBComponent,
     ErrorPageComponent,
+    RamDataComponent,
+    MixDataComponent,
   ],
   imports: [
     BrowserModule,
