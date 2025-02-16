@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angula
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 import { ComputeService } from 'src/app/core/service/compute.service';
+import { MenuService } from 'src/app/core/service/menu.service';
 @Component({
   selector: 'app-compute-data',
   templateUrl: './compute-data.component.html',
@@ -14,7 +15,10 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
   private myChart!: echarts.ECharts;
   private isFullScreen = false;
 
-  constructor(private computeService: ComputeService) { }
+  constructor(
+    private computeService: ComputeService
+    , private menuService: MenuService
+  ) { }
 
   ngAfterViewInit(): void {
     this.myChart = echarts.init(this.chartRef.nativeElement, null, { locale: 'ZH', renderer: 'canvas' });
@@ -73,6 +77,15 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getComputeData();
+
+    this.menuService.menuState$.subscribe((state: boolean) => {
+      console.log('Menu 狀態:', !state ? '顯示' : '隱藏');
+      if (this.myChart) {
+        setTimeout(() => {
+          this.myChart.resize();
+        }, 300);
+      }
+    });
   }
 
   getComputeData() {

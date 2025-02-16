@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { MenuService } from 'src/app/core/service/menu.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -24,9 +25,13 @@ export class LayoutComponent implements OnInit {
   menuVisible: boolean = true;
 
 
-  constructor() { }
+  constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
+    this.menuService.menuState$.subscribe((res) => {
+      console.log("res:",res);
+      this.toggleMenuVisibility();
+    });
   }
 
   hideMenu() {

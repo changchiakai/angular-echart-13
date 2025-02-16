@@ -7,10 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy-github":"npm run rmdist && npm run github-build && npm run github-deploy",
+    "deploy-github": "npm run rmdist && npm run github-build && npm run github-deploy",
     "rmdist": "npx rimraf ./dist",
     "github-build": "ng build --configuration production --base-href https://changchiakai.github.io/angular-echart-13/",
-    "github-deploy":"npx angular-cli-ghpages --dir=dist/angular-echart-13 --no-silent"
+    "github-deploy": "npx angular-cli-ghpages --dir=dist/angular-echart-13 --no-silent"
   },
   "private": true,
   "dependencies": {

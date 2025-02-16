@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuService } from 'src/app/core/service/menu.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,8 +11,7 @@ export class NavComponent implements OnInit {
   @Output() logoutEvent = new EventEmitter<void>();
   @Output() menuToggleEvent = new EventEmitter<boolean>();  // 用來通知父組件是否顯示 menu
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router,private menuService: MenuService) { }
   ngOnInit(): void {
   }
 
@@ -19,7 +19,8 @@ export class NavComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/login'], { replaceUrl: true });
   }
+
   toggleMenu() {
-    this.menuToggleEvent.emit();  // 發送切換菜單顯示/隱藏的事件
+    this.menuService.toggleMenu();
   }
 }
