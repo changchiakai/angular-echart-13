@@ -21,6 +21,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RamDataComponent } from './pages/ram-data/ram-data.component';
 import { MixDataComponent } from './pages/mix-data/mix-data.component';
 import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
+import { BpRamDataComponent } from './pages/bp-ram-data/bp-ram-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.co
     RamDataComponent,
     MixDataComponent,
     HsinchuPeopleComponent,
+    BpRamDataComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import {
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import RAM_DATA from 'src/app/mockdata/ram.json';
 
 @Injectable({ providedIn: 'root' })
 export class MockupInterceptor implements HttpInterceptor {
@@ -30,13 +31,15 @@ export class MockupInterceptor implements HttpInterceptor {
             .pipe(dematerialize());
 
 
-        function handleRoute() {
-            console.log('url:' , url);
-            
-            if (environment.useMockupApi) { 
+        function handleRoute(): Observable<HttpEvent<any>> {
+            console.log('url:', url);
+
+            if (environment.useMockupApi) {
                 switch (true) {
                     case url.endsWith('get-compute-data') && method === 'GET' && environment.useMockupApi:
                         return test();
+                    case url.endsWith('get-ram-data') && method === 'GET' && environment.useMockupApi:
+                        return getRamData();
                     default:
                         return next.handle(request); // pass through any requests not handled above
                 }
@@ -45,10 +48,20 @@ export class MockupInterceptor implements HttpInterceptor {
             }
         }
 
-        function test(){
-            const response={
-                'test':'test',
-                'data':[1,2,3,4,5]
+        function getRamData() {
+            const response = RAM_DATA
+            return of(
+                new HttpResponse({
+                    status: 200,
+                    body: response
+                })
+            );
+        }
+
+        function test() {
+            const response = {
+                'test': 'test',
+                'data': [1, 2, 3, 4, 5]
 
             }
             return of(
@@ -56,7 +69,7 @@ export class MockupInterceptor implements HttpInterceptor {
                     status: 200,
                     body: response
                 })
-            );  
+            );
         }
     }
 }

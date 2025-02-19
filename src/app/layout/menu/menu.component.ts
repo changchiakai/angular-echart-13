@@ -23,6 +23,9 @@ export class MenuComponent implements OnInit {
       text: '新竹人口資料', path: 'hsinchu-people-data', expanded: false
     },
     {
+      text: 'bp-ram' , path: 'bp-ram',expanded:false
+    },
+    {
       text: 'test',
       expanded: false,  // 用於控制子菜單是否展開
       subMenus: [

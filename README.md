@@ -4,6 +4,11 @@
 
 這個專案是基於 Angular 13 和 ECharts 5.3.3 建立的，用於展示如何在 Angular 應用中整合 ECharts 和 ngx-echarts 套件。
 
+使用 angular cli 13.3.11
+
+```
+npm install -g @angular/cli@13.3.11
+```
 
 ## 安裝與啟動
 

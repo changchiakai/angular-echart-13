@@ -8,6 +8,7 @@ import { TestBComponent } from './pages/test/test-b/test-b.component';
 import { RamDataComponent } from './pages/ram-data/ram-data.component';
 import { MixDataComponent } from './pages/mix-data/mix-data.component';
 import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
+import { BpRamDataComponent } from './pages/bp-ram-data/bp-ram-data.component';
 
 const routes: Routes = [
 
@@ -33,7 +34,9 @@ const routes: Routes = [
   {
     path: "test-b", component: TestBComponent
   },
-  
+  {
+    path: "bp-ram", component: BpRamDataComponent
+  },
   {
     path: '**', pathMatch: 'full',
     component: ErrorPageComponent
