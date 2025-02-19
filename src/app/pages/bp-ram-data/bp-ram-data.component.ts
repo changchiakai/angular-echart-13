@@ -68,6 +68,27 @@ export class BpRamDataComponent implements OnInit {
               this.fullTypeB();
             }
           },
+          myfullTypeC: {
+
+            title: "Bigger",
+            icon: 'path://M6.41421 5H10V3H3V10H5V6.41421L9.29289 10.7071L10.7071 9.29289L6.41421 5ZM21 14H19V17.5858L14.7071 13.2929L13.2929 14.7071L17.5858 19H14V21H21V14Z',
+            name: 'test',
+            onclick: () => {
+              console.log("test");
+              this.fullTypeB();
+            }
+          },
+          myfullTypeD: {
+            title: "Small",
+            icon: 'path://M15 4.00008H13V11.0001H20V9.00008H16.4142L20.7071 4.70718L19.2929 3.29297L15 7.58586V4.00008ZM4.00008 15H7.58586L3.29297 19.2929L4.70718 20.7071L9.00008 16.4142V20H11.0001V13H4.00008V15Z',
+            name: 'test',
+            onclick: () => {
+              console.log("test");
+              this.fullTypeB();
+            }
+          },
+          // https://remixicon.com/
+          
         }
       },
       dataZoom: [
