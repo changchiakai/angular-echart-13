@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
+import { ChartDialogService } from 'src/app/core/service/chart-dialog.service';
 import { ComputeService } from 'src/app/core/service/compute.service';
 import { MenuService } from 'src/app/core/service/menu.service';
 @Component({
@@ -14,10 +15,10 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
   @ViewChild('chart', { static: true }) chartRef!: ElementRef;
   private myChart!: echarts.ECharts;
   private isFullScreen = false;
-
   constructor(
-    private computeService: ComputeService
-    , private menuService: MenuService
+    private computeService: ComputeService,
+    private menuService: MenuService,
+    private chartDialogService: ChartDialogService
   ) { }
 
   ngAfterViewInit(): void {
@@ -138,4 +139,16 @@ export class ComputeDataComponent implements OnInit, AfterViewInit {
     // 重新調整圖表大小，防止放大後不顯示完全
     this.myChart.resize();
   }
+
+  
+  test2(){
+    const chartData = {
+      title: { text: '大型圖表示例' },
+      xAxis: { type: 'category', data: ['A', 'B', 'C'] },
+      yAxis: { type: 'value' },
+      series: [{ data: [10, 20, 30], type: 'bar' }]
+    };
+    this.chartDialogService.open(chartData)
+  }
+
 }
