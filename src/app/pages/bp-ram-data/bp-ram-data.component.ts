@@ -26,6 +26,9 @@ export class BpRamDataComponent implements OnInit {
   private myChart!: echarts.ECharts;
   private isFullScreen = false;
 
+  @ViewChild('chart2', { static: true }) chartRef2!: ElementRef;
+  private myChart2!: echarts.ECharts;
+
   constructor(
     private computeService: ComputeService
     , private menuService: MenuService,
@@ -33,9 +36,8 @@ export class BpRamDataComponent implements OnInit {
   ) { }
 
   ngAfterViewInit(): void {
-    this.getRamData();
     this.myChart = echarts.init(this.chartRef.nativeElement, null, { locale: 'ZH', renderer: 'canvas' });
-
+    this.myChart2 = echarts.init(this.chartRef2.nativeElement, null, { locale: 'ZH', renderer: 'canvas' });
     const dataCount = 1000;
     const times = Array.from({ length: dataCount }, (_, i) => `${Math.floor(i / 10).toString().padStart(2, '0')}:${(i % 10) * 6}`);
     const usageData = Array.from({ length: dataCount }, () => Math.floor(Math.random() * 100));
@@ -88,7 +90,7 @@ export class BpRamDataComponent implements OnInit {
             }
           },
           // https://remixicon.com/
-          
+
         }
       },
       dataZoom: [
@@ -107,6 +109,8 @@ export class BpRamDataComponent implements OnInit {
       backgroundColor: '#ffffff'  // 設定背景為白色
     };
     this.myChart.setOption(option);
+    this.getRamData();
+
   }
 
   ngOnInit() {
@@ -124,10 +128,76 @@ export class BpRamDataComponent implements OnInit {
 
   ramList: RamMode[] = [];
 
+  drawRamChart(data: RamMode[]) {
+    console.log("畫圖:" ,data)
+    console.log("data:" , data.map((rr)=> new Date(rr.timestamp)));
+  
+
+    const option = {
+      title: { text: 'RAM' },
+      tooltip: { trigger: 'axis' },
+      toolbox: {
+        feature: {
+
+          dataZoom: { title: { zoom: '縮放', back: '還原' } },
+          saveAsImage: { title: '儲存圖片' },
+          myCustome: {
+            myfullTypeC: {
+
+              title: "Bigger",
+              icon: 'path://M6.41421 5H10V3H3V10H5V6.41421L9.29289 10.7071L10.7071 9.29289L6.41421 5ZM21 14H19V17.5858L14.7071 13.2929L13.2929 14.7071L17.5858 19H14V21H21V14Z',
+              name: 'test',
+              onclick: () => {
+                console.log("test");
+                this.fullTypeB();
+              }
+            },
+            myfullTypeD: {
+              title: "Small",
+              icon: 'path://M15 4.00008H13V11.0001H20V9.00008H16.4142L20.7071 4.70718L19.2929 3.29297L15 7.58586V4.00008ZM4.00008 15H7.58586L3.29297 19.2929L4.70718 20.7071L9.00008 16.4142V20H11.0001V13H4.00008V15Z',
+              name: 'test',
+              onclick: () => {
+                console.log("test");
+                this.fullTypeB();
+              }
+            },
+            // https://remixicon.com/
+
+          }
+        },
+        
+// export class RamMode {
+//   metric: string;
+//   unit: string;
+//   color: string;
+//   timestamp: number;
+//   value: number;
+// }
+        dataZoom: [
+          { type: 'inside' },
+          { type: 'slider', show: true }
+        ],
+        xAxis: { type: 'category', data: data.map((rr)=> new Date(rr.timestamp)) },
+        yAxis: { type: 'value', axisLabel: { formatter: '{value} %' } },
+        series: [{
+          name: 'RAM 使用率',
+          type: 'line',
+          data: data.map((rr)=>rr.value),
+          smooth: true,
+          lineStyle: { color: '#5470C6' }
+        }],
+        backgroundColor: '#ffffff'  // 設定背景為白色
+      }
+    }
+    this.myChart2.setOption(option);
+  }
+
   getRamData() {
     this.ramService.getRamData().subscribe((res) => {
       console.log("res; ", res);
       this.ramList = res;
+      console.log("準備畫圖")
+      this.drawRamChart(this.ramList)
     }, (error) => {
       console.warn('error', error);
     })
