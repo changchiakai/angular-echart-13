@@ -9,6 +9,7 @@ import { RamDataComponent } from './pages/ram-data/ram-data.component';
 import { MixDataComponent } from './pages/mix-data/mix-data.component';
 import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
 import { BpRamDataComponent } from './pages/bp-ram-data/bp-ram-data.component';
+import { BotChatComponent } from './pages/bot-chat/bot-chat.component';
 
 const routes: Routes = [
 
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   {
     path: "bp-ram", component: BpRamDataComponent
+  },
+  {
+    path: "bot-chat" , component: BotChatComponent
   },
   {
     path: '**', pathMatch: 'full',

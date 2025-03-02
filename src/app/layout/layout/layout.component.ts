@@ -22,8 +22,7 @@ import { MenuService } from 'src/app/core/service/menu.service';
   ]
 })
 export class LayoutComponent implements OnInit {
-  menuVisible: boolean = true;
-
+  menuVisible: boolean = false;
 
   constructor(private menuService: MenuService) {}
 

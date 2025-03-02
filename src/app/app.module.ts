@@ -23,6 +23,7 @@ import { MixDataComponent } from './pages/mix-data/mix-data.component';
 import { HsinchuPeopleComponent } from './pages/hsinchu-people/hsinchu-people.component';
 import { BpRamDataComponent } from './pages/bp-ram-data/bp-ram-data.component';
 import { ChartDialogComponent } from './component/chart-dialog/chart-dialog.component';
+import { BotChatComponent } from './pages/bot-chat/bot-chat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ChartDialogComponent } from './component/chart-dialog/chart-dialog.comp
     HsinchuPeopleComponent,
     BpRamDataComponent,
     ChartDialogComponent,
+    BotChatComponent,
   ],
   imports: [
     BrowserModule,

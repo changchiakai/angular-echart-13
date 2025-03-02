@@ -25,6 +25,11 @@ export class MenuComponent implements OnInit {
     {
       text: 'bp-ram' , path: 'bp-ram',expanded:false
     },
+    { 
+      text: 'bot-chat',
+      path: 'bot-chat',
+      expanded: false
+    },
     {
       text: 'test',
       expanded: false,  // 用於控制子菜單是否展開

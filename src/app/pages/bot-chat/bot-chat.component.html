@@ -1,0 +1,74 @@
+<p>bot-chat works!</p>
+
+
+<!-- 聊天機器人對話框 -->
+<div class="chat-container">
+    <!-- 開啟對話按鈕 -->
+    <button class="chat-button" (click)="toggleChat()">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M5.76282 17H20V5H4V18.3851L5.76282 17ZM6.45455 19L2 22.5V4C2 3.44772 2.44772 3 3 3H21C21.5523 3 22 3.44772 22 4V18C22 18.5523 21.5523 19 21 19H6.45455ZM11 14H13V16H11V14ZM8.56731 8.81346C8.88637 7.20919 10.302 6 12 6C13.933 6 15.5 7.567 15.5 9.5C15.5 11.433 13.933 13 12 13H11V11H12C12.8284 11 13.5 10.3284 13.5 9.5C13.5 8.67157 12.8284 8 12 8C11.2723 8 10.6656 8.51823 10.5288 9.20577L8.56731 8.81346Z">
+            </path>
+        </svg>
+    </button>
+
+    <!-- 對話視窗 -->
+    <div class="chat-window" [class.open]="isChatOpen">
+        <!-- 對話框標題 -->
+        <div class="chat-header">
+            <h3>bimap AI Bot</h3>
+            <button class="close-button" (click)="toggleChat()">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- 對話內容區域 -->
+        <div class="chat-messages" #scrollContainer>
+            <div *ngFor="let msg of chatList; let i = index"
+                [ngClass]="{'user-message': msg.isUser, 'bot-message': !msg.isUser}" class="message">
+                <div class="message-content">
+                    <ng-container [ngSwitch]="msg.type">
+                        <ng-container *ngSwitchCase="'text'">
+                            {{msg.content}}
+                           
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'image'">
+                            <img [src]="msg.imageUrl" alt="用戶上傳的圖片" class="chat-image">
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="message-time">{{msg.time | date:'HH:mm'}}
+                    <button *ngIf="!msg.isUser && i > 1" (click)="copyMessage(msg.content)">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6ZM7 11H13V13H7V11ZM7 15H13V17H7V15Z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 輸入區域 -->
+        <div class="chat-input">
+            <!-- 如果剪貼簿有圖片 就會把剪貼簿圖片傳入對話框 -->
+            <input type="text" [(ngModel)]="userInput" placeholder="請輸入訊息..." (keyup.enter)="sendMessage()"
+                (paste)="handlePaste($event)">
+            <input type="file" #fileInput accept="image/*" (change)="handleImageUpload($event)" style="display: none">
+            <button class="image-upload-btn" (click)="openImageUpload()">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M2.9918 21C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918ZM20 15V5H4V19L14 9L20 15ZM20 17.8284L14 11.8284L6.82843 19H20V17.8284ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z">
+                    </path>
+                </svg>
+            </button>
+            <button (click)="sendMessage()">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M10 3H14C18.4183 3 22 6.58172 22 11C22 15.4183 18.4183 19 14 19V22.5C9 20.5 2 17.5 2 11C2 6.58172 5.58172 3 10 3ZM12 17H14C17.3137 17 20 14.3137 20 11C20 7.68629 17.3137 5 14 5H10C6.68629 5 4 7.68629 4 11C4 14.61 6.46208 16.9656 12 19.4798V17Z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
